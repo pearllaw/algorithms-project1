@@ -1,0 +1,4 @@
+# Ignore Compiled Files
+*.exe
+*.out
+*.app
