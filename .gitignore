@@ -1,4 +1,9 @@
-# Ignore Compiled Files
+# Compiled files
 *.exe
 *.out
-*.app
+
+# IDE
+.vscode/*
+
+# System files
+.DS_Store
