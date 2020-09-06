@@ -21,7 +21,6 @@
 // TODO
 #include <functional>
 #include <iostream>
-#include <math.h>
 
 enum disk_color { DISK_DARK, DISK_LIGHT};
 
@@ -110,19 +109,17 @@ public:
   // on the left (low indices) and all light disks on the right (high
   // indices).
   bool is_sorted() const {
-    // sorted_disks sorted;
-    // std::vector<disk_color> sorted_list = sorted.after()._colors;
-    // for (size_t i = 0; i < sorted_list.size()/2; i++)
-    // {
-    //   if (sorted_list[i] != DISK_DARK)
-    //     return false;
-    // } 
+    for (size_t i = 0; i < total_count()/2; i++)
+    {
+      if (_colors[i] != DISK_DARK)
+        return false;
+    } 
 
-    // for (size_t i = sorted_list.size()/2; i < sorted_list.size(); i++)
-    // {
-    //   if (sorted_list[i] != DISK_LIGHT)
-    //     return false;
-    // }
+    for (size_t i = total_count()/2; i < total_count(); i++)
+    {
+      if (_colors[i] != DISK_LIGHT)
+        return false;
+    }
     return true;  
   }
 };
@@ -162,30 +159,29 @@ sorted_disks sort_alternate(const disk_state& before) {
 
 // Algorithm that sorts disks using the lawnmower algorithm.
 sorted_disks sort_lawnmower(const disk_state& before) {
-  int swaps = 0;
-  disk_state temp = before; 
-  size_t disk_size = temp.total_count();
+  unsigned swaps = 0;
+  disk_state disk_after = before; 
+  size_t disk_size = disk_after.total_count();
   
-
-  while (disk_size != 0) // !temp.is_sorted
+  while (!disk_after.is_sorted()) 
   {
     for (size_t i = 0; i < disk_size; i++)
     {
-      if (temp.get(i) > temp.get(i + 1))
+      if (disk_after.get(i) > disk_after.get(i + 1))
       {
-        temp.swap(i);
+        disk_after.swap(i);
         swaps += 1;
       }
     }
     for (size_t j = (disk_size - 1); j > 0; j--)
     {
-      if (temp.get(j) < temp.get(j - 1))
+      if (disk_after.get(j) < disk_after.get(j - 1))
       {
-        temp.swap(j - 1);
+        disk_after.swap(j - 1);
         swaps += 1;
       }
     }
   }
-  return sorted_disks(before, swaps);
+  return sorted_disks(disk_after, swaps);
 }
   
