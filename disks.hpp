@@ -21,6 +21,7 @@
 // TODO
 #include <functional>
 #include <iostream>
+#include <math.h>
 
 enum disk_color { DISK_DARK, DISK_LIGHT};
 
@@ -94,17 +95,35 @@ public:
   // that the first disk at index 0 is light, the second disk at index 1
   // is dark, and so on for the entire row of disks.
   bool is_initialized() const {
-    // TODO: Write code for this function, including rewriting the return
-    // statement, and then delete these comments.  
+    for (size_t i = 0; i < total_count(); i++)
+    {
+      if ((i % 2 == 0 && _colors[i] != DISK_LIGHT) || 
+        (i % 2 == 1 && _colors[i] != DISK_DARK))
+      {
+        return false;
+      }
+    } 
+    return true;
   }
 
   // Return true when this disk_state is fully sorted, with all dark disks
   // on the left (low indices) and all light disks on the right (high
   // indices).
   bool is_sorted() const {
-    // TODO: Write code for this function, including rewriting the return
-    // statement, and then delete these comments.
-    return false;  
+    // sorted_disks sorted;
+    // std::vector<disk_color> sorted_list = sorted.after()._colors;
+    // for (size_t i = 0; i < sorted_list.size()/2; i++)
+    // {
+    //   if (sorted_list[i] != DISK_DARK)
+    //     return false;
+    // } 
+
+    // for (size_t i = sorted_list.size()/2; i < sorted_list.size(); i++)
+    // {
+    //   if (sorted_list[i] != DISK_LIGHT)
+    //     return false;
+    // }
+    return true;  
   }
 };
 
@@ -143,8 +162,30 @@ sorted_disks sort_alternate(const disk_state& before) {
 
 // Algorithm that sorts disks using the lawnmower algorithm.
 sorted_disks sort_lawnmower(const disk_state& before) {
-  // TODO: Write code for this function, including rewriting the return
-  // statement, and then delete these comments.
-  return sorted_disks(before, 0);
+  int swaps = 0;
+  disk_state temp = before; 
+  size_t disk_size = temp.total_count();
+  
+
+  while (disk_size != 0) // !temp.is_sorted
+  {
+    for (size_t i = 0; i < disk_size; i++)
+    {
+      if (temp.get(i) > temp.get(i + 1))
+      {
+        temp.swap(i);
+        swaps += 1;
+      }
+    }
+    for (size_t j = (disk_size - 1); j > 0; j--)
+    {
+      if (temp.get(j) < temp.get(j - 1))
+      {
+        temp.swap(j - 1);
+        swaps += 1;
+      }
+    }
+  }
+  return sorted_disks(before, swaps);
 }
   

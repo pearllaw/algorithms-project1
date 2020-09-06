@@ -1,9 +1,11 @@
-# Compiled files
+# Ignore compilation files
 *.exe
 *.out
+*.o
 
-# IDE
-.vscode/*
+# Ignore IDE files
+.vscode/
+.idea/
 
-# System files
+# Ignore system files
 .DS_Store
