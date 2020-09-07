@@ -175,6 +175,9 @@ swaps += 1;
   
 }
 
+return sorted_disks(disk_after, swaps);
+}
+
 
 // Algorithm that sorts disks using the lawnmower algorithm.
 sorted_disks sort_lawnmower(const disk_state& before) {
