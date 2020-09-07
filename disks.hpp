@@ -165,7 +165,7 @@ sorted_disks sort_lawnmower(const disk_state& before) {
   
   while (!disk_after.is_sorted()) 
   {
-    for (size_t i = 0; i < disk_size; i++)
+    for (size_t i = 0; i < disk_size - 1; i++)
     {
       if (disk_after.get(i) > disk_after.get(i + 1))
       {
@@ -173,7 +173,7 @@ sorted_disks sort_lawnmower(const disk_state& before) {
         swaps += 1;
       }
     }
-    for (size_t j = (disk_size - 1); j > 0; j--)
+    for (size_t j = disk_size - 1; j > 0; j--)
     {
       if (disk_after.get(j) < disk_after.get(j - 1))
       {
