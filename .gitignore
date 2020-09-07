@@ -2,6 +2,7 @@
 *.exe
 *.out
 *.o
+disks_test
 
 # Ignore IDE files
 .vscode/
