@@ -151,9 +151,28 @@ public:
 
 // Algorithm that sorts disks using the alternate algorithm.
 sorted_disks sort_alternate(const disk_state& before) {
-  // TODO: Write code for this function, including rewriting the return
-  // statement, and then delete these comments.
-  return sorted_disks(before, 0);
+  unsigned swaps = 0;
+disk_state disk_after = before;
+size_t disk_size = disk_after.total_count();
+
+while (!disk_after.is_sorted()) {
+
+for(size_t i = 0; i < disk_size - 1; i++) {
+for(size_t j = 0; j < disk_size - 1; j++)
+if(disk_after.get(j) > disk_after.get(j+1)) {
+disk_after.swap(j);
+swaps += 1;
+
+//if end
+}
+
+
+//for end
+}
+
+
+//while end
+  
 }
 
 
