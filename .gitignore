@@ -1,4 +1,4 @@
-# Ignore compilation files
+# Ignore compiled files
 *.exe
 *.out
 *.o
