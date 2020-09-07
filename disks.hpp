@@ -96,8 +96,8 @@ public:
   bool is_initialized() const {
     for (size_t i = 0; i < total_count(); i++)
     {
-      if ((i % 2 == 0 && _colors[i] != DISK_LIGHT) || 
-        (i % 2 == 1 && _colors[i] != DISK_DARK))
+      if ((i % 2 == 0 && get(i) != DISK_LIGHT) || 
+        (i % 2 == 1 && get(i) != DISK_DARK))
       {
         return false;
       }
@@ -111,13 +111,13 @@ public:
   bool is_sorted() const {
     for (size_t i = 0; i < total_count()/2; i++)
     {
-      if (_colors[i] != DISK_DARK)
+      if (get(i) != DISK_DARK)
         return false;
     } 
 
     for (size_t i = total_count()/2; i < total_count(); i++)
     {
-      if (_colors[i] != DISK_LIGHT)
+      if (get(i) != DISK_LIGHT)
         return false;
     }
     return true;  
